@@ -1,15 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/style.css">
-  <title>Document</title>
+  <title>FishCamp Guided Fishing</title>
 </head>
-<body>
-  <main class="main">
 
+<body>
+  <!-- create elements to be animated in the header on the id'd image and div. TBD animate the submission button and radio buttons on the survey form. -->
+  <header>
+    <div class="logo"><img width=200 height="150" src="./images/image.png"></img>
+      <h2>FishCamp Guided Fishing</h2>
+      <h4>Charters and guided and backpack fishing sustainably in PNW mountain lakes and streams</h4>
+    </div>
+
+    <div class="address">12345 McRoad Street, Black Diamond, WA 98010</div>
+
+    <img id="fish" src="./images/trout.svg" width="100" height="50" alt="silhouette of a trout" />
+    <div id="bubble1" class="bubble"></div>
+  </header>
+  <main>
+    <nav>
+      <ul>
+        <li><a href="./index.html">Nav Link 1</a></li>
+        <li><a href="./index.html">Nav Link 2</a></li>
+        <li><a href="./index.html">Nav Link 3</a></li>
+      </ul>
+    </nav>
+
+    <!-- this registration form from FreeCodeCamp.org responsive web design curriculum (i did this before coming to UW cert course)-->
+    <h1>Registration Form</h1>
+    <p>Please fill out this form with the required information</p>
+    <form method="post" action=''>
+      <fieldset>
+        <label for="first-name">Enter Your First Name: <input id="first-name" name="first-name" type="text"
+            required /></label>
+        <label for="last-name">Enter Your Last Name: <input id="last-name" name="last-name" type="text"
+            required /></label>
+        <label for="email">Enter Your Email: <input id="email" name="email" type="email" required /></label>
+        <label for="new-password">Create a New Password: <input id="new-password" name="new-password" type="password"
+            pattern="[a-z0-5]{8,}" required /></label>
+      </fieldset>
+      <fieldset>
+        <legend>Account type (required)</legend>
+        <label for="personal-account"><input id="personal-account" type="radio" name="account-type" class="inline"
+            checked /> Personal</label>
+        <label for="business-account"><input id="business-account" type="radio" name="account-type" class="inline" />
+          Business</label>
+      </fieldset>
+      <fieldset>
+        <label for="profile-picture">Upload a profile picture: <input id="profile-picture" type="file"
+            name="file" /></label>
+        <label for="age">Input your age (years): <input id="age" type="number" name="age" min="13" max="120" /></label>
+        <label for="referrer">How did you hear about us?
+          <select id="referrer" name="referrer">
+            <option value="">(select one)</option>
+            <option value="1">WDFW News</option>
+            <option value="2">FishCamp YouTube Channel</option>
+            <option value="3">Fishing Forums</option>
+            <option value="4">Other</option>
+          </select>
+        </label>
+        <label for="bio">Provide a bio:
+          <textarea id="bio" name="bio" rows="3" cols="30" placeholder="That tug is my only drug..."></textarea>
+        </label>
+      </fieldset>
+      <label for="terms-and-conditions">
+        <input class="inline" id="terms-and-conditions" type="checkbox" required name="terms-and-conditions" /> I accept
+        the terms and conditions
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
   </main>
+
 </body>
+
 </html>
+
+<!-- Find (at least) one example of transitions that you want to include into your final project.  Remember this final project will be part of your portfolio, you want to use it to impress future employers. Implement that transition you found using SCSS, Mixins, and Variables.
+
+Go beyond the source code you found and add your own flair to the transition. Be sure to include the source of the transition or open source code. Comment all the code, the HTML, CSS, and SCSS, so I can easily understand your code and what it does.
+
+ Bonus: Use BEM style naming to your HTML/SCSS.
+
+Extra Bonus: Use two animations using transform and transition using Gulp, SCSS, Mixins and Variables. -->

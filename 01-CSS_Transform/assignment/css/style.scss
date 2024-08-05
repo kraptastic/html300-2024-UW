@@ -1,0 +1,110 @@
+//variables declare early in 1 scss sheet or create variables sheet as scope increases
+$bg-color: #ddd;
+$bg-color-focus: #bbb;
+$accent1-color: goldenrod;
+$accent2-color: lightseagreen;
+$text-color: darkslategrey;
+$base-font: "Roboto", sans-serif;
+$accent-font: "Rokkitt", serif;
+
+//mixins for base text and bubble template
+@mixin default-text {
+  font-family: $base-font;
+  font-weight: 300;
+}
+
+@mixin bubble-format {
+  border: solid 1px darken($accent2-color, 20%);
+  border-radius: 50%;
+  background-color: darken($bg-color, 25%);
+  width: 7px;
+  height: 7px;
+  opacity: 0%;
+  z-index: 4;
+}
+
+* {
+  box-sizing: border-box;
+  @include default-text;
+}
+
+header {
+  background-image: linear-gradient($accent2-color, $bg-color, $accent2-color);
+  max-height: 30%;
+  min-height: 30%;
+  width: 100%;
+  overflow: hidden;
+}
+
+//use of bubble mixin as further bubbles may need a base template
+//make bubbles appear constantly on page regardless of focus
+.bubble {
+  @include bubble-format;
+  margin-left: 57%;
+  animation: bubbles 8s infinite 1s;
+  transition: opacity 1s ease-in-out;
+}
+#fish {
+  opacity: 0%;
+}
+
+//make header interactive with a fish appearing when user is looking near the logo and address
+
+header:hover,
+header:focus-visible {
+  #fish {
+    opacity: 40%;
+    transition: opacity 1s ease-in-out;
+    z-index: 5;
+    animation: myfish 5s infinite;
+    margin-left: 70%;
+  }
+}
+
+//manually created oscillation and rise of bubble with increase in scale/removal of bubble border for realism. TBD consider looping to create bubbles and randomizing location
+@keyframes bubbles {
+  20% {
+    opacity: 20%;
+    transform: translate(50px, -40px);
+  }
+
+  35% {
+    scale: 1.2;
+    transform: translate(10px, -90px);
+  }
+  50% {
+    opacity: 40%;
+    scale: 1.4;
+    transform: translate(40px, -120px);
+  }
+
+  70% {
+    scale: 1.7;
+    transform: translate(10px, -150px);
+  }
+  85% {
+    transform: translate(30px, -190px);
+  }
+  100% {
+    opacity: 30%;
+    border-radius: none;
+    scale: 2.3;
+    transform: translate(5px, -250px);
+  }
+}
+
+// below CSS credited to Will Simpson's medium page https://medium.com/@will.simpson_/swimming-fish-svg-css-animations-a8f37fd63f41
+// did not edit the values at this time, formatting of header will likely cause need for repositioning of the animated element
+// added second bubble animation from scratch in consideration of this copy and paste due to rubric requirements for changed code.
+@keyframes myfish {
+  50% {
+    margin-left: 50%;
+  }
+
+  20% {
+    transform: rotateY(190deg);
+  }
+  30% {
+    transform: rotateY(180deg);
+  }
+}
