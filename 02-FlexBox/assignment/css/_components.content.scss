@@ -1,13 +1,79 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *:after,
 *:before {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 .main {
-    padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  margin: 0 2rem auto;
+  padding: 0;
+  border: 3px solid cyan;
+  overflow: hidden;
+}
+
+.header {
+  margin: auto;
+  padding: none;
+  grid-column-start: span 3;
+  border: 3px solid green;
+  background-color: white;
+  height: 30vh;
+
+  &__bubble {
+    @include bubble-format;
+    margin-left: 57%;
+    animation: bubbles 8s infinite 1s;
+    transition: opacity 1s ease-in-out;
+  }
+  &__fish {
+    opacity: 0%;
+  }
+}
+
+@mixin bubble-format {
+  border: solid 1px darken($accent2-color, 20%);
+  border-radius: 50%;
+  background-color: darken($bg-color, 25%);
+  width: 7px;
+  height: 7px;
+  opacity: 0%;
+  z-index: 4;
+}
+
+//manually created oscillation and rise of bubble with increase in scale/removal of bubble border for realism. TBD consider looping to create bubbles and randomizing location
+@keyframes bubbles {
+  20% {
+    opacity: 20%;
+    transform: translate(50px, -40px);
+  }
+
+  35% {
+    scale: 1.2;
+    transform: translate(10px, -90px);
+  }
+  50% {
+    opacity: 40%;
+    scale: 1.4;
+    transform: translate(40px, -120px);
+  }
+
+  70% {
+    scale: 1.7;
+    transform: translate(10px, -150px);
+  }
+  85% {
+    transform: translate(30px, -190px);
+  }
+  100% {
+    opacity: 30%;
+    border-radius: none;
+    scale: 2.3;
+    transform: translate(5px, -250px);
+  }
 }
