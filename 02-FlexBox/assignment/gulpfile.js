@@ -43,6 +43,6 @@ task("watchFiles", function () {
   watch(paths.js.src).on("change", browserSync.reload);
 });
 
-const watching = parallel("watchFiles", "browserSync");
+const watching = parallel("watchFiles", "browserSync", "sass");
 
 exports.default = watching;
