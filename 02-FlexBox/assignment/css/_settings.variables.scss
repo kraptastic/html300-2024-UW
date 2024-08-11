@@ -24,6 +24,7 @@ $cadet-gray: #969ba6ff;
   right: 60vh;
   animation: bubbles 8s infinite 1s;
   transition: opacity 1s ease-in-out;
+  //query for <tablet because that bubble is halfway down the page without this
   @include media-query(mobile) {
     top: 57vh;
     right: 30vh;
@@ -65,8 +66,6 @@ $cadet-gray: #969ba6ff;
 }
 
 // below CSS credited to Will Simpson's medium page https://medium.com/@will.simpson_/swimming-fish-svg-css-animations-a8f37fd63f41
-// did not edit the values at this time, formatting of header will likely cause need for repositioning of the animated element
-// added second bubble animation from scratch in consideration of this copy and paste due to rubric requirements for changed code.
 @keyframes myfish {
   50% {
     right: 40vw;
