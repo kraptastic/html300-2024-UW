@@ -6,7 +6,10 @@ import Contact from './components/Contact.vue'
 import Gallery from './components/Gallery.vue'
 import NotFound from './components/NotFound.vue'
 import Header from './components/Header.vue'
+import Nav from './components/Nav.vue'
 import Footer from './components/Footer.vue'
+
+import logo from '@/assets/image.png'
 
 //use standard SPA routing from docs or assignment video, map path routes, then rendered values in object called routes
 const routes = {
@@ -32,7 +35,30 @@ const currentView = computed(() => {
 </script>
 
 <template>
-  <Header></Header>
+  <Header>
+    <!-- use of named slot features in vue exercised below, see div formatting present in header.vue -->
+    <template #headerDivOne>
+      <img
+        class="img-fluid"
+        :src="logo"
+        alt="company logo, browser not compatible"
+        width="200"
+        height="200"
+      />
+    </template>
+    <template #headerDivTwo>
+      <h2 class="">FishCamp, LLC Guided Fishing</h2>
+      <h4 class="">
+        Charters and guided and backpack fishing sustainably in WA, OR, ID mountain lakes and
+        streams
+      </h4>
+    </template>
+    <template #headerDivThree>
+      <h5 class="">12345 McRoad Street, Black Diamond, WA 98010</h5>
+    </template>
+  </Header>
+  <!-- bring the nav component in with less flair than the header component -->
+  <Nav></Nav>
 
   <main class="row bg-white p-0 m-0">
     <!--main content element that is dependent on the logic in script above-->
