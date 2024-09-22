@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps, ref } from 'vue'
+// import myMixin from './myMixin.js' could not figure this out
 
 //DRY -- store props to use in template, to be received from parent component
 const prop = defineProps({
@@ -9,11 +10,15 @@ const prop = defineProps({
   cardText: String
 })
 
+//logic to apply a border. was not able to place this logic in a mixin
+
 // store boolean to set a state, use let to allow variable to change
 let clickedState = ref(false)
 // make a function and pass the event object in
 function toggleBorder(e) {
+  // toggle state on click event
   this.clickedState = !this.clickedState
+  //set border attribute to string pending state of variable
   if (this.clickedState === true) {
     e.target.style.border = '3px dashed magenta'
     console.log('something happened')
