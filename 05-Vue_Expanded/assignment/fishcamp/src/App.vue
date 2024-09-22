@@ -68,8 +68,6 @@ const currentView = computed(() => {
   <Footer></Footer>
 </template>
 
-<script>
-//declare mixin for clicked image css change to add border
-</script>
+<script></script>
 
 <style scoped></style>

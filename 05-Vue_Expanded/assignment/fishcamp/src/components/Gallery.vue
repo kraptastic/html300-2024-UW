@@ -41,6 +41,7 @@ const cardDetails = ref([
       'Mudfish kaluga yellowfin grouper forehead brooder suckermouth armored catfish mudminnow pejerrey sea raven popeye catafula whalefish, sargassum fish.'
   }
 ])
+
 //store details for page header and sub header
 const pageHeader = 'View examples of trips'
 const subHeader =

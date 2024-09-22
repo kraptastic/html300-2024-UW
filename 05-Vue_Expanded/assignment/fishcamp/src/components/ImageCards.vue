@@ -8,12 +8,25 @@ const prop = defineProps({
   cardTitle: String,
   cardText: String
 })
+
+// store boolean to set a state, use let to allow variable to change
+let clickedState = ref(false)
+// make a function and pass the event object in
+function toggleBorder(e) {
+  this.clickedState = !this.clickedState
+  if (this.clickedState === true) {
+    e.target.style.border = '3px dashed magenta'
+    console.log('something happened')
+  } else {
+    e.target.style.border = 'none'
+  }
+}
 </script>
 
 <template>
   <div :class="col">
     <div class="card h=100">
-      <!-- templated img and card element with props passed from parent -->
+      <!-- templated img and card element with props passed from parent, listen for click to pass the click event to toggleBorder function -->
       <img
         :src="prop.imgSrc"
         class="d-block w-100"
@@ -21,6 +34,7 @@ const prop = defineProps({
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         v-bind:data-bs-title="prop.cardTitle"
+        @click="toggleBorder($event)"
       />
     </div>
     <div class="card-body">
