@@ -1,13 +1,265 @@
+//remember REM SAVEREM and not pixels for layout
+
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *:after,
 *:before {
-    box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+//establish 3 columns
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: white;
+  background-color: $cadet-gray;
+}
+
+.header {
+  margin: 0 5% auto;
+  padding: 0;
+  background-color: $blue-green;
+  grid-column-start: span 3;
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+  //deal with overflow of header in small devices
+  @include media-query(mobile) {
+    flex-wrap: wrap;
+    height: 60vh;
+  }
+  //hide anchor in the header
+  &__link {
+    display: none;
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__logo {
+    margin: auto 1rem auto;
+
+    @include media-query(mobile) {
+      margin: 1rem auto auto;
+    }
+  }
+  &__text-wrapper {
+    @include media-query(mobile) {
+      display: block;
+    }
+  }
+
+  &__h2,
+  &__h4 {
+    @include media-query(mobile) {
+      text-align: center;
+      margin: 1rem auto 1rem;
+    }
+  }
+
+  &__address {
+    margin: 0 1rem 0;
+    @include media-query(mobile) {
+      margin: 1rem auto 1rem;
+    }
+  }
+
+  &__fish {
+    opacity: 0%;
+    position: absolute;
+    top: 30vh;
+    right: 20vw;
+
+    @include media-query(mobile) {
+      top: 45vh;
+    }
+  }
+  //look, all the bubble formatting is a mixin
+  &__bubble {
+    @include bubble-format;
+  }
+}
+
+//make header interactive with a fish appearing when user is looking near the logo and address
+.header:hover,
+.header:focus-visible {
+  //perplexed at my failure to use BEM here and had to resort to full name .header__fish rather than &__fish
+  .header__fish {
+    opacity: 40%;
+    transition: opacity 1s ease-in-out;
+    z-index: 5;
+    animation: myfish 5s infinite;
+  }
+}
+
+.nav {
+  background-color: goldenrod;
+  grid-column-start: span 3;
+  margin: 0 5% auto;
+  width: 100%;
+  display: flex;
+  flex: 1 1 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  &__list {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+  //small layout change to allow for all links to fit on scaled nav using media query
+  &__item {
+    text-align: center;
+    margin: 0 1rem 0;
+    padding: 0 1rem 0;
+    min-width: 0;
+    @include media-query(mobile) {
+      margin: 0;
+    }
+  }
+  &__item:last-of-type {
+    margin-right: 2rem;
+  }
+  &__link,
+  &__link:visited {
+    text-decoration: none;
+    color: white;
+    //todo format for highlight on hover and tap
+  }
+}
+
+.sidebar {
+  padding: 1rem;
+  background-color: white;
+  color: $paynes-gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  border-bottom: 2px solid $cadet-gray;
+
+  //set width and grid behavior for >tablet
+  @include media-query(tab) {
+    width: 85%;
+    grid-column: 1 / span 1;
+    margin: 0 0 0 15%;
+    justify-content: flex-start;
+  }
+
+  //set width and grid behavior for <tablet
+  @include media-query(mobile) {
+    width: 100%;
+    grid-column: 1 / span 3;
+    margin: 0 0 0 5%;
+  }
+  &__h4 {
+    margin: 1rem auto 1rem;
+    padding: 0;
+  }
 }
 
 .main {
-    padding: 2rem;
+  background-color: white;
+  color: $paynes-gray;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 2px solid $cadet-gray;
+
+  // format grid for >tablet, unsure of 107.5% value but it works; is this spaghetti css
+  @include media-query(tab) {
+    width: 107.5%;
+    grid-column: 2 / span 2;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  @include media-query(mobile) {
+    width: 100%;
+    grid-column: 1 / span 3;
+    margin: 0 0 0 5%;
+  }
+  &__h4 {
+    margin: 2rem auto 1rem;
+    padding: 0;
+  }
+  &__figure {
+    margin: 0 auto 1rem;
+    padding: 1rem;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+  &__img {
+    width: 90%;
+    height: 100%;
+    margin: auto;
+  }
+  &__caption {
+    padding: 0;
+    margin: 1rem auto 0;
+    width: 90%;
+  }
+}
+
+.footer {
+  background-color: $paynes-gray;
+  grid-column-start: span 3;
+  margin: 0 5% auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  &__h4 {
+    margin: 5rem 0 1rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+  }
+  &__item {
+    text-align: center;
+    margin: 1rem 0 1rem;
+    min-width: 0;
+
+    //format for <tablet so it's not imposisble to tap the links
+    @include media-query(mobile) {
+      margin: 1rem 0 1rem;
+    }
+  }
+
+  &__link,
+  &__link:visited {
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+  &__p {
+    margin-bottom: 3rem;
+  }
 }
